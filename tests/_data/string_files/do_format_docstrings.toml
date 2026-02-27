@@ -805,14 +805,14 @@ source='''"""
     This is a short desription.
 
     Here is a link to the github issue
-    https://github.com/PyCQA/docformatter/issues/199
+    https://github.com/arquitt/docformatter/issues/199
 
     This is a long description.
     """'''
 expected='''"""This is a short desription.
 
     Here is a link to the github issue
-    https://github.com/PyCQA/docformatter/issues/199
+    https://github.com/arquitt/docformatter/issues/199
 
     This is a long description.
     """'''

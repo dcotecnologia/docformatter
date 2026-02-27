@@ -21,6 +21,7 @@ Additional contributions by (sorted by name)
 - Benjamin Schubert <contact@benschubert.me>
 - Björn Holtvogt <bjoern.holtvogt@gmail.com>
 - Casey Korver <84342833+korverdev@users.noreply.github.com>
+- Danilo Carolino <danilogcarolino@gmail.com>
 - Daniel Goldman <danielgoldman4@gmail.com>
 - Doyle Rowland <doyle.rowland@reliaqual.com>
 - Elliot Ford <elliot.ford@astrazeneca.com>

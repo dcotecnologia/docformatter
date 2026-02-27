@@ -30,7 +30,7 @@ If you'd like to use an unreleased version, you can also use pip to install
 
 .. code-block:: console
 
-    $ python -m pip install git+https://github.com/PyCQA/docformatter.git@v1.5.0-rc1
+    $ python -m pip install git+https://github.com/arquitt/docformatter.git@v1.5.0-rc1
 
 Replace the tag ``v1.5.0-rc1`` with a commit SHA to install an untagged
 version.

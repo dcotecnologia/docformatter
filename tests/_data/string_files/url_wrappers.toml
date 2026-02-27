@@ -102,13 +102,13 @@ expected = [
 [no_indent_string_on_newline]
 instring = """
      Here is a link to the github issue
-    https://github.com/PyCQA/docformatter/issues/199
+    https://github.com/arquitt/docformatter/issues/199
 
     This is a long description."""
 expected = [
     ["    Here is a link to the github issue",
-     "     https://github.com/PyCQA/docformatter/issues/19"],
-    91]
+     "     https://github.com/arquitt/docformatter/issues/199"],
+    94]
 
 [short_anonymous_url]
 instring = """

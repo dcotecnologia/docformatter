@@ -40,8 +40,8 @@ tomli = [
 docformatter = "docformatter.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/PyCQA/docformatter"
-Repository = "https://github.com/PyCQA/docformatter"
+Homepage = "https://github.com/arquitt/docformatter"
+Repository = "https://github.com/arquitt/docformatter"
 Documentation = "https://docformatter.readthedocs.io/en/latest/"
 
 [tool.poetry]

@@ -2,19 +2,19 @@
 docformatter
 ============
 
-.. |CI| image:: https://img.shields.io/github/actions/workflow/status/PyCQA/docformatter/ci.yml?branch=master
-    :target: https://github.com/PyCQA/docformatter/actions/workflows/ci.yml
-.. |COVERALLS| image:: https://img.shields.io/coveralls/github/PyCQA/docformatter
-    :target: https://coveralls.io/github/PyCQA/docformatter
-.. |CONTRIBUTORS| image:: https://img.shields.io/github/contributors/PyCQA/docformatter
-    :target: https://github.com/PyCQA/docformatter/graphs/contributors
-.. |COMMIT| image:: https://img.shields.io/github/last-commit/PyCQA/docformatter
+.. |CI| image:: https://img.shields.io/github/actions/workflow/status/arquitt/docformatter/ci.yml?branch=master
+    :target: https://github.com/arquitt/docformatter/actions/workflows/ci.yml
+.. |COVERALLS| image:: https://img.shields.io/coveralls/github/arquitt/docformatter
+    :target: https://coveralls.io/github/arquitt/docformatter
+.. |CONTRIBUTORS| image:: https://img.shields.io/github/contributors/arquitt/docformatter
+    :target: https://github.com/arquitt/docformatter/graphs/contributors
+.. |COMMIT| image:: https://img.shields.io/github/last-commit/arquitt/docformatter
 .. |BLACK| image:: https://img.shields.io/badge/%20style-black-000000.svg
     :target: https://github.com/psf/black
 .. |ISORT| image:: https://img.shields.io/badge/%20imports-isort-%231674b1
     :target: https://pycqa.github.io/isort/
 .. |SELF| image:: https://img.shields.io/badge/%20formatter-docformatter-fedcba.svg
-    :target: https://github.com/PyCQA/docformatter
+    :target: https://github.com/arquitt/docformatter
 .. |SPHINXSTYLE| image:: https://img.shields.io/badge/%20style-sphinx-0a507a.svg
     :target: https://www.sphinx-doc.org/en/master/usage/index.html
 .. |NUMPSTYLE| image:: https://img.shields.io/badge/%20style-numpy-459db9.svg
@@ -27,7 +27,7 @@ docformatter
 .. |PYVERS| image:: https://img.shields.io/pypi/pyversions/docformatter
 .. |PYMAT| image:: https://img.shields.io/pypi/format/docformatter
 .. |DD| image:: https://img.shields.io/pypi/dd/docformatter
-.. |PRE| image:: https://img.shields.io/github/v/release/PyCQA/docformatter?include_prereleases
+.. |PRE| image:: https://img.shields.io/github/v/release/arquitt/docformatter?include_prereleases
 
 +----------------+----------------------------------------------------------+
 | **Code**       + |BLACK| |ISORT|                                          +
@@ -86,7 +86,7 @@ Supported Python versions: 3.12+.
 
 Or, if you want to use a release candidate (or any other tag)::
 
-    $ pip install git+https://github.com/PyCQA/docformatter.git@<RC_TAG>
+    $ pip install git+https://github.com/arquitt/docformatter.git@<RC_TAG>
 
 Where <RC_TAG> is the release candidate tag you'd like to install.  Release
 candidate tags will have the format v1.6.0-rc1  Release candidates will also be
@@ -191,7 +191,7 @@ Do you use *docformatter*?  What style docstrings do you use?  Add some badges t
 .. code-block::
 
     .. image:: https://img.shields.io/badge/%20formatter-docformatter-fedcba.svg
-        :target: https://github.com/PyCQA/docformatter
+        :target: https://github.com/arquitt/docformatter
 
 |SPHINXSTYLE|
 
@@ -230,4 +230,4 @@ Issues
 
 Bugs and patches can be reported on the `GitHub page`_.
 
-.. _`GitHub page`: https://github.com/PyCQA/docformatter/issues
+.. _`GitHub page`: https://github.com/arquitt/docformatter/issues

@@ -64,7 +64,7 @@ with open("tests/_data/string_files/url_wrappers.toml", "rb") as f:
         ("url_no_delete_words", [(36, 92)], 0),
         ("no_newline_after_url", [(113, 167), (229, 280)], 0),
         ("only_url_in_description", [(4, 99)], 0),
-        ("no_indent_string_on_newline", [(43, 91)], 0),
+        ("no_indent_string_on_newline", [(43, 94)], 0),
         ("short_anonymous_url", [(137, 190)], 0),
         ("quoted_url", [(59, 80)], 0),
     ],

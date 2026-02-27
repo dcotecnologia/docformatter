@@ -35,8 +35,8 @@ instring = "This is a Concurrent Versions System URL pattern: cvs://<method:logi
 expected = [50, 114]
 
 [git]
-instring = "This is a Git URL pattern: git://github.com/PyCQA/docformatter.git"
-expected = [27, 66]
+instring = "This is a Git URL pattern: git://github.com/arquitt/docformatter.git"
+expected = [27, 68]
 
 [subversion]
 instring = "This is a Subversion URL pattern: svn://<logindetails>@<repository><:port>/<modulepath>"
@@ -91,16 +91,16 @@ instring = "This is a WebDAV Transfer Protocol URL pattern: dav://example.com/di
 expected = [48, 88]
 
 [hypertext_transfer_protocol]
-instring = "This is a Hypertext Transfer Protocol URL pattern: http://github.com/PyCQA/docformatter"
-expected = [51, 87]
+instring = "This is a Hypertext Transfer Protocol URL pattern: http://github.com/arquitt/docformatter"
+expected = [51, 89]
 
 [secure_hypertext_transfer_protocol]
-instring = "This is a Secure Hypertext Transfer Protocol URL pattern: https://github.com/PyCQA/docformatter"
-expected = [58, 95]
+instring = "This is a Secure Hypertext Transfer Protocol URL pattern: https://github.com/arquitt/docformatter"
+expected = [58, 97]
 
 [obsolete_secure_hypertext_transfer_protocol]
-instring = "This is an obsolete Secure Hypertext Transfer Protocol URL pattern: shttp://github.com/PyCQA/docformatter"
-expected = [68, 105]
+instring = "This is an obsolete Secure Hypertext Transfer Protocol URL pattern: shttp://github.com/arquitt/docformatter"
+expected = [68, 107]
 
 [imap]
 instring = "This is a Internet Message Access Protocol URL pattern: imap://[<user>[;AUTH=<type>]@]<host>[:<port>]/<command>"

@@ -113,7 +113,7 @@ format docstrings on saving python files.
 Head over to ``Preferences > Tools > File Watchers``, click the ``+`` icon
 and configure ``docformatter`` as shown below:
 
-.. image:: https://github.com/PyCQA/docformatter/blob/master/docs/images/pycharm-file-watcher-configurations.png?raw=true
+.. image:: https://github.com/arquitt/docformatter/blob/master/docs/images/pycharm-file-watcher-configurations.png?raw=true
    :alt: PyCharm file watcher configurations
 
 Use with pre-commit
@@ -126,8 +126,8 @@ with the following ``.pre-commit-config.yaml`` configuration:
 
 .. code-block:: yaml
 
-  - repo: https://github.com/PyCQA/docformatter
-    rev: v1.7.5
+  - repo: https://github.com/arquitt/docformatter
+    rev: v1.8.0
     hooks:
       - id: docformatter
         additional_dependencies: [tomli]
