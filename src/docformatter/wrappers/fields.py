@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter's field list wrapper functions."""
 
-
 # Standard Library Imports
 import re
 import textwrap
@@ -35,6 +34,8 @@ from typing import List, Tuple
 # docformatter Package Imports
 import docformatter.strings as _strings
 from docformatter.constants import DEFAULT_INDENT
+
+_MULTISPACE_PATTERN = re.compile(" +")
 
 
 def do_wrap_field_lists(  # noqa: PLR0913
@@ -85,10 +86,10 @@ def do_wrap_field_lists(  # noqa: PLR0913
             field_idx,
             _idx,
         )
+        _combined_field = f"{_field_name}{_field_body}"
 
-        if len(f"{_field_name}{_field_body}") <= (wrap_length - len(indentation)):
-            _field = f"{_field_name}{_field_body}"
-            lines.append(f"{indentation}{_field}")
+        if len(_combined_field) <= (wrap_length - len(indentation)):
+            lines.append(f"{indentation}{_combined_field}")
         else:
             lines.extend(
                 _do_wrap_field(_field_name, _field_body, indentation, wrap_length)
@@ -100,7 +101,7 @@ def do_wrap_field_lists(  # noqa: PLR0913
 
 
 def _do_join_field_body(text: str, field_idx: list[tuple[int, int]], idx: int) -> str:
-    """Join the filed body lines into a single line that can be wrapped.
+    """Join the field body lines into a single line that can be wrapped.
 
     Parameters
     ----------
@@ -121,9 +122,7 @@ def _do_join_field_body(text: str, field_idx: list[tuple[int, int]], idx: int) -
     except IndexError:
         _field_body = text[field_idx[idx][1] :].strip()
 
-    _field_body = " ".join(
-        [_line.strip() for _line in _field_body.splitlines()]
-    ).strip()
+    _field_body = " ".join(_line.strip() for _line in _field_body.splitlines()).strip()
 
     # Add a space before the field body unless the field body is a link.
     if not _field_body.startswith("`") and _field_body:
@@ -169,6 +168,8 @@ def _do_wrap_field(field_name, field_body, indentation, wrap_length):
 
     for _idx, _field in enumerate(_wrapped_field):
         _indent = indentation if _idx == 0 else _subsequent
-        _wrapped_field[_idx] = f"{_indent}{re.sub(' +', ' ', _field.strip())}"
+        _wrapped_field[_idx] = (
+            f"{_indent}{_MULTISPACE_PATTERN.sub(' ', _field.strip())}"
+        )
 
     return _wrapped_field

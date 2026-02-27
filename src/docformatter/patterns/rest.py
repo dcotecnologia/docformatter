@@ -26,12 +26,14 @@
 # SOFTWARE.
 """This module provides docformatter's reST directive pattern recognition functions."""
 
-
 # Standard Library Imports
 import re
 
 # docformatter Package Imports
 from docformatter.constants import REST_DIRECTIVE_REGEX, REST_INLINE_REGEX
+
+_REST_DIRECTIVE_PATTERN = re.compile(REST_DIRECTIVE_REGEX, flags=re.MULTILINE)
+_REST_INLINE_PATTERN = re.compile(REST_INLINE_REGEX, flags=re.MULTILINE)
 
 
 def do_find_rest_directives(
@@ -51,7 +53,7 @@ def do_find_rest_directives(
     bool
         True if the docstring is a reST directive, False otherwise.
     """
-    _rest_iter = re.finditer(REST_DIRECTIVE_REGEX, text, flags=re.MULTILINE)
+    _rest_iter = _REST_DIRECTIVE_PATTERN.finditer(text)
     return [(_rest.start(0), _rest.end(0)) for _rest in _rest_iter]
 
 
@@ -68,5 +70,5 @@ def do_find_inline_rest_markup(text: str) -> list[tuple[int, int]]:
     bool
         True if the docstring is a reST directive, False otherwise.
     """
-    _rest_iter = re.finditer(REST_INLINE_REGEX, text, flags=re.MULTILINE)
+    _rest_iter = _REST_INLINE_PATTERN.finditer(text)
     return [(_rest.start(0), _rest.end(0)) for _rest in _rest_iter]

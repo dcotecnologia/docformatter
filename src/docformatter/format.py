@@ -24,8 +24,7 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""This module provides docformatter's Formattor class."""
-
+"""This module provides docformatter's Formatter class."""
 
 # Standard Library Imports
 import argparse
@@ -537,7 +536,7 @@ class Formatter:
         stdin: TextIO,
         stdout: TextIO,
     ) -> None:
-        """Initialize a Formattor instance.
+        """Initialize a Formatter instance.
 
         Parameters
         ----------
@@ -553,7 +552,7 @@ class Formatter:
 
         Returns
         -------
-        object
+        None
         """
         self.args = args
         self.stderror: TextIO = stderror

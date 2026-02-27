@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter's field list pattern recognition functions."""
 
-
 # Standard Library Imports
 import re
 from re import Match
@@ -39,6 +38,14 @@ from docformatter.constants import (
     NUMPY_REGEX,
     SPHINX_REGEX,
 )
+
+_EPYTEXT_PATTERN = re.compile(EPYTEXT_REGEX)
+_GOOGLE_PATTERN = re.compile(GOOGLE_REGEX)
+_NUMPY_PATTERN = re.compile(NUMPY_REGEX)
+_SPHINX_PATTERN = re.compile(SPHINX_REGEX)
+_USER_DEFINED_DASH_PATTERN = re.compile(r"[\S ]+ - \S+")
+_USER_DEFINED_DOUBLE_DASH_PATTERN = re.compile(r"\s*\S+\s+--\s+")
+_USER_DEFINED_AT_PATTERN = re.compile(r"^ *@[a-zA-Z0-9_\- ]*(?:(?!:).)*$")
 
 
 def do_find_field_lists(
@@ -68,13 +75,13 @@ def do_find_field_lists(
     if style == "epytext":
         _field_idx = [
             (_field.start(0), _field.end(0))
-            for _field in re.finditer(EPYTEXT_REGEX, text)
+            for _field in _EPYTEXT_PATTERN.finditer(text)
         ]
         _wrap_parameters = True
     elif style == "sphinx":
         _field_idx = [
             (_field.start(0), _field.end(0))
-            for _field in re.finditer(SPHINX_REGEX, text)
+            for _field in _SPHINX_PATTERN.finditer(text)
         ]
         _wrap_parameters = True
 
@@ -129,7 +136,7 @@ def is_epytext_field_list(line: str) -> Union[Match[str], None]:
         @param x:
         @type x:
     """
-    return re.match(EPYTEXT_REGEX, line)
+    return _EPYTEXT_PATTERN.match(line)
 
 
 def is_google_field_list(line: str) -> Union[Match[str], None]:
@@ -150,7 +157,7 @@ def is_google_field_list(line: str) -> Union[Match[str], None]:
     Google field lists have the following pattern:
         x (int): Description of x.
     """
-    return re.match(GOOGLE_REGEX, line)
+    return _GOOGLE_PATTERN.match(line)
 
 
 def is_numpy_field_list(line: str) -> Union[Match[str], None]:
@@ -174,7 +181,7 @@ def is_numpy_field_list(line: str) -> Union[Match[str], None]:
         x
             Description of x.
     """
-    return re.match(NUMPY_REGEX, line)
+    return _NUMPY_PATTERN.match(line)
 
 
 def is_sphinx_field_list(line: str) -> Union[Match[str], None]:
@@ -195,7 +202,7 @@ def is_sphinx_field_list(line: str) -> Union[Match[str], None]:
     Sphinx field lists have the following pattern:
         :parameter: description
     """
-    return re.match(SPHINX_REGEX, line)
+    return _SPHINX_PATTERN.match(line)
 
 
 # TODO: Add a USER_DEFINED_REGEX to constants.py and use that instead of the
@@ -226,7 +233,7 @@ def is_user_defined_field_list(line: str) -> Union[Match[str], None]:
     included and are retained for historical purposes.
     """
     return (
-        re.match(r"[\S ]+ - \S+", line)
-        or re.match(r"\s*\S+\s+--\s+", line)
-        or re.match(r"^ *@[a-zA-Z0-9_\- ]*(?:(?!:).)*$", line)
+        _USER_DEFINED_DASH_PATTERN.match(line)
+        or _USER_DEFINED_DOUBLE_DASH_PATTERN.match(line)
+        or _USER_DEFINED_AT_PATTERN.match(line)
     )

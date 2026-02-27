@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter's list pattern recognition functions."""
 
-
 # Standard Library Imports
 import re
 from re import Match
@@ -52,6 +51,10 @@ from .fields import (
 from .headers import is_alembic_header, is_numpy_section_header, is_rest_section_header
 from .misc import is_inline_math, is_literal_block
 
+_BULLET_PATTERN = re.compile(BULLET_REGEX)
+_ENUM_PATTERN = re.compile(ENUM_REGEX)
+_OPTION_PATTERN = re.compile(OPTION_REGEX)
+
 
 def is_type_of_list(
     text: str,
@@ -68,7 +71,8 @@ def is_type_of_list(
         Whether to strictly adhere to the wrap length argument.  If True,
         even heuristic lists will be wrapped.
     style : str
-        The docstring style in use.  One of 'epytext', 'sphinx', numpy', or 'googlw'.
+        The docstring style in use. One of ``epytext``, ``sphinx``, ``numpy``,
+        or ``google``.
 
     Returns
     -------
@@ -125,7 +129,7 @@ def is_bullet_list(line: str) -> Union[Match[str], None]:
 
     See <https://docutils.sourceforge.io/docs/user/rst/quickref.html#bullet-lists>`_
     """
-    return re.match(BULLET_REGEX, line)
+    return _BULLET_PATTERN.match(line)
 
 
 def is_definition_list(line: str) -> Union[Match[str], None]:
@@ -148,7 +152,7 @@ def is_definition_list(line: str) -> Union[Match[str], None]:
 
     See <https://docutils.sourceforge.io/docs/user/rst/quickref.html#definition-lists>`_
     """
-    return re.match(ENUM_REGEX, line)
+    return _ENUM_PATTERN.match(line)
 
 
 def is_enumerated_list(line: str) -> Union[Match[str], None]:
@@ -172,11 +176,11 @@ def is_enumerated_list(line: str) -> Union[Match[str], None]:
 
     See <https://docutils.sourceforge.io/docs/user/rst/quickref.html#enumerated-lists>`_
     """
-    return re.match(ENUM_REGEX, line)
+    return _ENUM_PATTERN.match(line)
 
 
 def is_heuristic_list(text: str, strict: bool) -> bool:
-    """Check if the line is a heuristic list item.
+    """Check whether ``text`` appears to be a heuristic list.
 
     Heuristic lists are identified by a long number of lines with short columns.
 
@@ -191,8 +195,8 @@ def is_heuristic_list(text: str, strict: bool) -> bool:
 
     Returns
     -------
-    Match[str] | None
-        A match object if the line matches a heuristic list pattern, None otherwise.
+    bool
+        True when ``text`` resembles a heuristic list, otherwise False.
     """
     split_lines = text.rstrip().splitlines()
 
@@ -200,9 +204,9 @@ def is_heuristic_list(text: str, strict: bool) -> bool:
     #  potential lists for the user to decide if they are lists or not.
     # Very large number of lines but short columns probably means a list of
     # items.
+    max_line_length = max((len(line.strip()) for line in split_lines), default=1)
     if (
-        len(split_lines) / max([len(line.strip()) for line in split_lines] + [1])
-        > HEURISTIC_MIN_LIST_ASPECT_RATIO
+        len(split_lines) / max_line_length > HEURISTIC_MIN_LIST_ASPECT_RATIO
     ) and not strict:
         return True
 
@@ -230,4 +234,4 @@ def is_option_list(line: str) -> Union[Match[str], None]:
 
     See <https://docutils.sourceforge.io/docs/user/rst/quickref.html#option-lists>`_
     """
-    return re.match(OPTION_REGEX, line)
+    return _OPTION_PATTERN.match(line)

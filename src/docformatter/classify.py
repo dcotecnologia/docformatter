@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter's classification functions."""
 
-
 # Standard Library Imports
 import re
 import sys
@@ -123,17 +122,17 @@ def _do_find_anchor_index(
 
     Parameters
     ----------
-    tokens (list[TokenInfo]):
+    tokens : list[TokenInfo]
         A list of tokenized Python source code.
-    docstring_index (int):
-        Index of the STRING token representing the docstring.
-    target (str):
+    docstring_index : int
+        The index of the STRING token representing the docstring.
+    target : str
         One of "class", "def", or "attribute" indicating what to search for.
 
     Returns
     -------
-    int | None:
-        Index of the anchor token if found, otherwise None.
+    int | None
+        The index of the matching anchor token if found, otherwise None.
     """
     i = docstring_index - 1
     saw_decorator = False
@@ -167,7 +166,7 @@ def is_attribute_docstring(
     tokens: list[tokenize.TokenInfo],
     index: int,
 ) -> bool:
-    """Return True if the string token is an attribute docstring.
+    """Determine whether the string token is an attribute docstring.
 
     Parameters
     ----------
@@ -178,7 +177,8 @@ def is_attribute_docstring(
 
     Returns
     -------
-        True if attribute docstring, False otherwise.
+    bool
+        True if this token is an attribute docstring, False otherwise.
     """
     if index < 2:  # noqa: PLR2004
         return False

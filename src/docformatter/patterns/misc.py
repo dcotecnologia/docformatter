@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter's miscellaneous pattern recognition functions."""
 
-
 # Standard Library Imports
 import re
 import tokenize
@@ -35,6 +34,13 @@ from typing import Union
 
 # docformatter Package Imports
 from docformatter.constants import LITERAL_REGEX, URL_REGEX
+
+_INLINE_MATH_PATTERN = re.compile(r" *\w *:[a-zA-Z0-9_\- ]*:")
+_LITERAL_PATTERN = re.compile(LITERAL_REGEX)
+_PARAM_LIST_MARKER_PATTERN = re.compile(r"\s(?:@|-|\*)\s")
+_BEGIN_SENTENCE_PATTERN = re.compile(r"^[-@\)]")
+_PYDOC_REF_PATTERN = re.compile(r"^:\w+:")
+_URL_PATTERN = re.compile(URL_REGEX)
 
 
 # TODO: Create INLINE_MATH_REGEX in constants.py and use it here.
@@ -56,7 +62,7 @@ def is_inline_math(line: str) -> Union[Match[str], None]:
     Inline math expressions have the following pattern:
         c :math:`[0, `]`
     """
-    return re.match(r" *\w *:[a-zA-Z0-9_\- ]*:", line)
+    return _INLINE_MATH_PATTERN.match(line)
 
 
 def is_literal_block(line: str) -> Union[Match[str], None]:
@@ -78,7 +84,7 @@ def is_literal_block(line: str) -> Union[Match[str], None]:
         ::
             code
     """
-    return re.match(LITERAL_REGEX, line)
+    return _LITERAL_PATTERN.match(line)
 
 
 def is_probably_beginning_of_sentence(line: str) -> Union[Match[str], None, bool]:
@@ -94,14 +100,12 @@ def is_probably_beginning_of_sentence(line: str) -> Union[Match[str], None, bool
     bool
         True if this token is the beginning of a sentence, False otherwise.
     """
-    # Check heuristically for a parameter list.
-    for token in ["@", "-", r"\*"]:
-        if re.search(rf"\s{token}\s", line):
-            return True
+    if _PARAM_LIST_MARKER_PATTERN.search(line):
+        return True
 
     stripped_line = line.strip()
-    is_beginning_of_sentence = re.match(r"^[-@\)]", stripped_line)
-    is_pydoc_ref = re.match(r"^:\w+:", stripped_line)
+    is_beginning_of_sentence = _BEGIN_SENTENCE_PATTERN.match(stripped_line)
+    is_pydoc_ref = _PYDOC_REF_PATTERN.match(stripped_line)
 
     return is_beginning_of_sentence and not is_pydoc_ref
 
@@ -117,10 +121,10 @@ def is_some_sort_of_code(text: str) -> bool:
     Returns
     -------
     bool
-        True if the text contains and code patterns, False otherwise.
+        True if the text contains code-like patterns, False otherwise.
     """
     return any(
-        len(word) > 50 and not re.match(URL_REGEX, word)  # noqa: PLR2004
+        len(word) > 50 and not _URL_PATTERN.match(word)  # noqa: PLR2004
         for word in text.split()
     )
 
@@ -136,7 +140,7 @@ def is_string_constant(token: tokenize.TokenInfo) -> bool:
     Returns
     -------
     bool
-        True if the doctring token is actually string constant, False otherwise.
+        True if the docstring token is actually a string constant, False otherwise.
     """
     if token.type == tokenize.OP and token.string == "=":
         return True

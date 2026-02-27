@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter's header pattern recognition functions."""
 
-
 # Standard Library Imports
 import re
 from re import Match
@@ -38,6 +37,10 @@ from docformatter.constants import (
     NUMPY_SECTION_REGEX,
     REST_SECTION_REGEX,
 )
+
+_ALEMBIC_PATTERN = re.compile(ALEMBIC_REGEX)
+_NUMPY_SECTION_PATTERN = re.compile(NUMPY_SECTION_REGEX)
+_REST_SECTION_PATTERN = re.compile(REST_SECTION_REGEX)
 
 
 def is_alembic_header(line: str) -> Union[Match[str], None]:
@@ -60,7 +63,7 @@ def is_alembic_header(line: str) -> Union[Match[str], None]:
     bool
         True if the line matches an Alembic header pattern, False otherwise.
     """
-    return re.match(ALEMBIC_REGEX, line)
+    return _ALEMBIC_PATTERN.match(line)
 
 
 def is_numpy_section_header(line: str) -> Union[Match[str], None]:
@@ -96,7 +99,7 @@ def is_numpy_section_header(line: str) -> Union[Match[str], None]:
         A match object if the line matches a NumPy section header pattern, None
         otherwise.
     """
-    return re.match(NUMPY_SECTION_REGEX, line)
+    return _NUMPY_SECTION_PATTERN.match(line)
 
 
 def is_rest_section_header(line: str) -> Union[Match[str], None]:
@@ -140,4 +143,4 @@ def is_rest_section_header(line: str) -> Union[Match[str], None]:
     bool
         True if the line matches a reST section header pattern, False otherwise.
     """
-    return re.match(REST_SECTION_REGEX, line)
+    return _REST_SECTION_PATTERN.match(line)

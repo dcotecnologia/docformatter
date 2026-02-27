@@ -24,8 +24,7 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""This module provides docformatter's Configurater class."""
-
+"""This module provides docformatter configuration parsing utilities."""
 
 # Standard Library Imports
 import argparse
@@ -66,11 +65,11 @@ class Configurater:
     args: argparse.Namespace = argparse.Namespace()
 
     def __init__(self, args: Union[Sequence[str], None]) -> None:
-        """Initialize a Configurater class instance.
+        """Initialize a Configurater instance.
 
         Parameters
         ----------
-        args : list
+        args : Sequence[str] | None
             Any command line arguments passed during invocation.
         """
         self.args_lst: Union[Sequence[str], None] = args

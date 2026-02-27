@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter utility functions."""
 
-
 # Standard Library Imports
 import os
 import re
@@ -52,15 +51,16 @@ def find_py_files(sources, recursive, exclude=None):
 
     Returns
     -------
-        list of files found.
+    Iterable[str]
+        Python source file paths found from the provided sources.
     """
 
     def is_hidden(name):
-        """Return True if file 'name' is .hidden."""
+        """Return True if ``name`` points to a hidden file."""
         return os.path.basename(os.path.abspath(name)).startswith(".")
 
     def is_excluded(name, excluded):
-        """Return True if file 'name' is excluded."""
+        """Return True if ``name`` matches an exclusion pattern."""
         return (
             any(re.search(re.escape(str(e)), name, re.IGNORECASE) for e in excluded)
             if excluded
@@ -122,7 +122,7 @@ def has_correct_length(length_range, start, end):
 
 
 def is_in_range(line_range, start, end):
-    """Determine if ??? is within the desired range.
+    """Determine whether a token range overlaps the configured line range.
 
     This function is used with the --range start_row end_row argument.
 
@@ -138,13 +138,13 @@ def is_in_range(line_range, start, end):
     Returns
     -------
     in_range : bool
-        True if in range or range is None, else False
+        True if the token range overlaps ``line_range`` or if ``line_range``
+        is None, otherwise False.
     """
     if line_range is None:
         return True
-    return any(
-        line_range[0] <= line_no <= line_range[1] for line_no in range(start, end + 1)
-    )
+    range_start, range_end = line_range
+    return not (end < range_start or start > range_end)
 
 
 def prefer_field_over_url(
@@ -169,10 +169,5 @@ def prefer_field_over_url(
     if not field_idx:
         return url_idx
 
-    nonoverlapping_urls = []
-
     any_param_start = min(e[0] for e in field_idx)
-    for _key, _value in enumerate(url_idx):
-        if _value[1] < any_param_start:
-            nonoverlapping_urls.append(_value)
-    return nonoverlapping_urls
+    return [url_range for url_range in url_idx if url_range[1] < any_param_start]

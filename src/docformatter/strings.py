@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter string manipulation functions."""
 
-
 # Standard Library Imports
 import contextlib
 import re
@@ -378,14 +377,16 @@ def do_split_summary(lines) -> List[str]:
 
     tokens = re.split(r"(\s+)", text)  # Keep whitespace for accurate rejoining
     sentence = []
+    sentence_text = ""
     i = 0
 
     while i < len(tokens):
         token = tokens[i]
         sentence.append(token)
+        sentence_text += token
 
         if token.endswith(".") and not any(
-            "".join(sentence).strip().endswith(abbr) for abbr in ABBREVIATIONS
+            sentence_text.strip().endswith(abbr) for abbr in ABBREVIATIONS
         ):
             i += 1
             break

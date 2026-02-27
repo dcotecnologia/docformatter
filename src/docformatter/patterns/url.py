@@ -26,7 +26,6 @@
 # SOFTWARE.
 """This module provides docformatter's URL pattern recognition functions."""
 
-
 # Standard Library Imports
 import contextlib
 import re
@@ -34,6 +33,9 @@ from typing import List, Tuple
 
 # docformatter Package Imports
 from docformatter.constants import URL_REGEX, URL_SKIP_REGEX
+
+_URL_PATTERN = re.compile(URL_REGEX)
+_URL_SKIP_PATTERN = re.compile(URL_SKIP_REGEX)
 
 
 def do_find_links(text: str) -> List[Tuple[int, int]]:
@@ -50,7 +52,7 @@ def do_find_links(text: str) -> List[Tuple[int, int]]:
         A list of tuples with each tuple containing the starting and ending
         position of each URL found in the description.
     """
-    _url_iter = re.finditer(URL_REGEX, text)
+    _url_iter = _URL_PATTERN.finditer(text)
     return [(_url.start(0), _url.end(0)) for _url in _url_iter]
 
 
@@ -68,7 +70,7 @@ def do_skip_link(text: str, index: Tuple[int, int]) -> bool:
     Returns
     -------
     _do_skip : bool
-        Whether to skip this link and simpley treat it as a standard text word.
+        Whether to skip this link and simply treat it as a standard text word.
 
     Notes
     -----
@@ -76,7 +78,7 @@ def do_skip_link(text: str, index: Tuple[int, int]) -> bool:
         1. The URL scheme pattern such as 's3://' or 'file://' or 'dns:'.
         2. The beginning of a URL link that has been wrapped by the user.
     """
-    _do_skip = re.search(URL_SKIP_REGEX, text[index[0] : index[1]]) is not None
+    _do_skip = _URL_SKIP_PATTERN.search(text[index[0] : index[1]]) is not None
 
     with contextlib.suppress(IndexError):
         _do_skip = _do_skip or (text[index[0]] == "<" and text[index[1]] != ">")
