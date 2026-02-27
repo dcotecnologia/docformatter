@@ -1,16 +1,17 @@
-[tool.poetry]
+[project]
 name = "docformatter"
-version = "1.7.7"
+version = "1.8.0"
 description = "Formats docstrings to follow PEP 257"
-authors = ["Steven Myint"]
-maintainers = [
-    "Doyle Rowland <doyle.rowland@reliaqual.com>",
+authors = [
+    {name = "Steven Myint"},
+    {name = "Danilo Carolino", email = "danilogcarolino@gmail.com"},
 ]
-license = "Expat"
+maintainers = [
+    {name = "Danilo Carolino", email = "danilogcarolino@gmail.com"},
+]
+license = "MIT"
 readme = "README.rst"
-homepage = "https://github.com/PyCQA/docformatter"
-repository = "https://github.com/PyCQA/docformatter"
-documentation = "https://docformatter.readthedocs.io/en/latest/"
+requires-python = ">=3.12"
 keywords = [
     "PEP 257", "pep257", "style", "formatter", "docstrings",
 ]
@@ -18,50 +19,59 @@ classifiers=[
           'Intended Audience :: Developers',
           'Environment :: Console',
           'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.9',
-          'Programming Language :: Python :: 3.10',
-          'Programming Language :: Python :: 3.11',
           'Programming Language :: Python :: 3.12',
+          'Programming Language :: Python :: 3.13',
+          'Programming Language :: Python :: 3.14',
           'Programming Language :: Python :: Implementation',
           'Programming Language :: Python :: Implementation :: PyPy',
           'Programming Language :: Python :: Implementation :: CPython',
-          'License :: OSI Approved :: MIT License',
       ]
+
+dependencies = [
+    "charset_normalizer>=3,<4",
+]
+
+[project.optional-dependencies]
+tomli = [
+    "tomli>=2,<3; python_version < '3.11'",
+]
+
+[project.scripts]
+docformatter = "docformatter.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/PyCQA/docformatter"
+Repository = "https://github.com/PyCQA/docformatter"
+Documentation = "https://docformatter.readthedocs.io/en/latest/"
+
+[tool.poetry]
 packages = [{include = "docformatter", from = "src"}]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-charset_normalizer = "^3.0.0"
-tomli = {version = "^2.0.0", python = "<3.11", optional = true}
+python = ">=3.12"
 
 [tool.poetry.group.dev.dependencies]
-Sphinx = "^6.0.0"
-tox = "^4.0.0"
-twine = "^6.1.0"
+Sphinx = "^9.1.0"
+tox = "^4.46.3"
+twine = "^6.2.0"
 
 [tool.poetry.group.testing.dependencies]
-coverage = {extras = ["toml"], version = "^7.5.0"}
+coverage = {extras = ["toml"], version = "^7.13.4"}
 mock = "^5.2.0"
-pytest = "^8.4.0"
-pytest-cov = "^6.2.0"
+pytest = "^9.0.2"
+pytest-cov = "^7.0.0"
 pytest-order = "^1.3.0"
 
 [tool.poetry.group.linting.dependencies]
-autopep8 = "^2.0.0"
-black = ">=25"
-isort = "^6.0.0"
-mypy = "^1.17.0"
-pycodestyle = "^2.8.0"
-pydocstyle = "^6.1.1"
-pylint = "^3.3.0"
-rstcheck = "^6.1.0"
-ruff = "^0.12.0"
-
-[tool.poetry.extras]
-tomli = ["tomli"]
-
-[tool.poetry.scripts]
-docformatter = "docformatter.__main__:main"
+autopep8 = "^2.3.2"
+black = "^26.1.0"
+isort = "^8.0.0"
+mypy = "^1.19.1"
+pycodestyle = "^2.14.0"
+pydocstyle = "^6.3.0"
+pylint = "^4.0.5"
+rstcheck = "^6.2.5"
+ruff = "^0.15.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -142,7 +152,7 @@ output = 'coverage.xml'
 
 [tool.black]
 line-length = 88
-target-version = ['py39', 'py310', 'py311', 'py312', 'py313']
+target-version = ['py312', 'py313', 'py314']
 include = '\.pyi?$'
 exclude = '''
 /(

@@ -18,11 +18,13 @@ jobs:
     name: Update AUTHORS.rst file
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
 
       - name: Update AUTHORS.rst file
         shell: python
@@ -76,7 +78,7 @@ jobs:
         if: success()
         with:
           add: AUTHORS.rst
-          message: 'chore: update AUTHORS.rst file with new author(s)'
+          message: "chore: update AUTHORS.rst file with new author(s)"
           author_name: GitHub Actions
           author_email: action@github.com
           committer_name: GitHub Actions

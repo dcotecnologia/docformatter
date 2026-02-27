@@ -82,12 +82,7 @@ From pip::
 
     $ pip install --upgrade docformatter
 
-Or, if you want to use pyproject.toml to configure docformatter and you're using
-Python < 3.11::
-
-    $ pip install --upgrade docformatter[tomli]
-
-With Python >=3.11, ``tomllib`` from the standard library is used.
+Supported Python versions: 3.12+.
 
 Or, if you want to use a release candidate (or any other tag)::
 
@@ -96,6 +91,26 @@ Or, if you want to use a release candidate (or any other tag)::
 Where <RC_TAG> is the release candidate tag you'd like to install.  Release
 candidate tags will have the format v1.6.0-rc1  Release candidates will also be
 made available as a Github Release.
+
+Development
+===========
+
+Install project and development dependencies with Poetry::
+
+    $ poetry install
+
+A root ``Makefile`` is available with common tasks::
+
+    $ make help
+
+Common examples::
+
+    $ make test-unit
+    $ make test-integration
+    $ make test-system
+    $ make lint
+    $ make format
+    $ make docs
 
 Example
 =======

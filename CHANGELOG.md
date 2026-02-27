@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.8.0](https://github.com/PyCQA/docformatter/tree/v1.8.0) (2026-02-27)
+
+[Full Changelog](https://github.com/PyCQA/docformatter/compare/v1.7.7...v1.8.0)
+
+Maintenance
+
+- migrate project metadata from deprecated `[tool.poetry]` keys to PEP 621 `[project]`
+- make production dependency constraints more flexible (`charset_normalizer`, `tomli` extra)
+- refresh development, testing, and linting dependency versions
+- add root `Makefile` with common development tasks (`install`, `test-*`, `lint`, `format`, `docs`, `clean`)
+- expand tox/CI Python matrix to include Python 3.14
+
 ## [v1.7.7](https://github.com/PyCQA/docformatter/tree/v1.7.7) (2025-05-11)
 
 [Full Changelog](https://github.com/PyCQA/docformatter/compare/v1.7.6...v1.7.7)

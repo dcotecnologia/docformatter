@@ -28,7 +28,7 @@ jobs:
     name: Create New Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -76,29 +76,29 @@ jobs:
           upload_url: ${{ steps.cutrelease.outputs.upload_url }}
           asset_path: ./dist/*.whl
 
-#      - name: Publish to Test PyPi
-#        if: ${{ env.build_ok == 1 }}
-#        uses: pypa/gh-action-pypi-publish@release/v1
-#        with:
-#          user: __token__
-#          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-#          repository_url: https://test.pypi.org/legacy/
+      #      - name: Publish to Test PyPi
+      #        if: ${{ env.build_ok == 1 }}
+      #        uses: pypa/gh-action-pypi-publish@release/v1
+      #        with:
+      #          user: __token__
+      #          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      #          repository_url: https://test.pypi.org/legacy/
 
-#      - name: Test install from Test PyPI
-#        if: ${{ env.build_ok == 1 }}
-#        run: |
-#          sudo apt-get update
-#          pip install \
-#          --index-url https://test.pypi.org/simple/ \
-#          --extra-index-url https://pypi.org/simple \
-#          docformatter==${{ steps.newversion.outputs.new_version }} && echo "install_ok=1" >> $GITHUB_ENV
+      #      - name: Test install from Test PyPI
+      #        if: ${{ env.build_ok == 1 }}
+      #        run: |
+      #          sudo apt-get update
+      #          pip install \
+      #          --index-url https://test.pypi.org/simple/ \
+      #          --extra-index-url https://pypi.org/simple \
+      #          docformatter==${{ steps.newversion.outputs.new_version }} && echo "install_ok=1" >> $GITHUB_ENV
 
-#      - name: Publish to PyPi
-#        if: ${{ env.install_ok == 1 }}
-#        uses: pypa/gh-action-pypi-publish@release/v1
-#        with:
-#          user: __token__
-#          password: ${{ secrets.PYPI_API_TOKEN }}
+      #      - name: Publish to PyPi
+      #        if: ${{ env.install_ok == 1 }}
+      #        uses: pypa/gh-action-pypi-publish@release/v1
+      #        with:
+      #          user: __token__
+      #          password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Generate release changelog
         uses: heinrichreimer/github-changelog-generator-action@master
@@ -137,7 +137,7 @@ jobs:
         if: ${{ env.do_changelog == 1 }}
         with:
           add: CHANGELOG.md
-          message: 'chore: update CHANGELOG.md for new release'
+          message: "chore: update CHANGELOG.md for new release"
           author_name: GitHub Actions
           author_email: action@github.com
           committer_name: GitHub Actions
