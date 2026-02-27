@@ -6,8 +6,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [1.8.0] - 2026-02-27
 
-
-Changed
+### Changed
 
 - migrate project metadata from deprecated `[tool.poetry]` keys to PEP 621 `[project]`
 - make production dependency constraints more flexible (`charset_normalizer`, `tomli` extra)
@@ -17,8 +16,7 @@ Changed
 
 ## [1.7.7] - 2025-05-11
 
-
-Changed
+### Changed
 
 - chore\(deps-dev\): bump black from 22.12.0 to 24.3.0 [\#311](https://github.com/PyCQA/docformatter/pull/311) ([dependabot[bot]](https://github.com/apps/dependabot))
 - chore\(deps-dev\): bump jinja2 from 3.1.4 to 3.1.6 [\#310](https://github.com/PyCQA/docformatter/pull/310) ([dependabot[bot]](https://github.com/apps/dependabot))
@@ -29,17 +27,16 @@ Changed
 
 ## [1.7.6] - 2025-05-07
 
-
-Added
+### Added
 
 - prefer new unittest.mock from the standard library [\#280](https://github.com/PyCQA/docformatter/pull/280) ([a-detiste](https://github.com/a-detiste))
 - Handle abbreviation 'etc.' \(et cetera\) [\#273](https://github.com/PyCQA/docformatter/pull/273) ([knedlsepp](https://github.com/knedlsepp))
 
-Fixed
+### Fixed
 
 - Do not double-process urls [\#284](https://github.com/PyCQA/docformatter/pull/284) ([lilatomic](https://github.com/lilatomic))
 
-Changed
+### Changed
 
 - Fix pre-commit syntax [\#266](https://github.com/PyCQA/docformatter/pull/266) ([jonashaag](https://github.com/jonashaag))
 - Update version listed in documentation's Pre-Commit example [\#262](https://github.com/PyCQA/docformatter/pull/262) ([korverdev](https://github.com/korverdev))
@@ -47,79 +44,72 @@ Changed
 
 ## [1.7.5] - 2023-07-12
 
-
-Added
+### Added
 
 - fix: not recognizing `yield` as a sphinx field name [\#254](https://github.com/PyCQA/docformatter/pull/254) ([weibullguy](https://github.com/weibullguy))
 
 ## [1.7.4] - 2023-07-10
 
-
-Fixed
+### Fixed
 
 - fix: summary with back ticks and sphinx field names with periods [\#248](https://github.com/PyCQA/docformatter/pull/248) ([weibullguy](https://github.com/weibullguy))
 
-Changed
+### Changed
 
 - chore: update documentation link for metadata [\#247](https://github.com/PyCQA/docformatter/pull/247) ([icp1994](https://github.com/icp1994))
 - test: split format tests into multiple files [\#246](https://github.com/PyCQA/docformatter/pull/246) ([weibullguy](https://github.com/weibullguy))
 
 ## [1.7.3] - 2023-06-23
 
-
-Fixed
+### Fixed
 
 - fix: removing newline between Sphinx field lists [\#237](https://github.com/PyCQA/docformatter/pull/237) ([weibullguy](https://github.com/weibullguy))
 
-Changed
+### Changed
 
 - chore: move changelog to tag workflow [\#233](https://github.com/PyCQA/docformatter/pull/233) ([weibullguy](https://github.com/weibullguy))
 
 ## [1.7.2] - 2023-06-07
 
-
-Fixed
+### Fixed
 
 - fix: wrapping issues with reST directives, quoted URLs, and Sphinx field lists [\#219](https://github.com/PyCQA/docformatter/pull/219) ([weibullguy](https://github.com/weibullguy))
 
 ## [1.7.1] - 2023-05-19
 
-
-Added
+### Added
 
 - feat: support epytext style [\#211](https://github.com/PyCQA/docformatter/pull/211) ([weibullguy](https://github.com/weibullguy))
 - feat: use tomllib for Python 3.11+ [\#208](https://github.com/PyCQA/docformatter/pull/208) ([weibullguy](https://github.com/weibullguy))
 - feat: wrap Sphinx style long parameter descriptions [\#201](https://github.com/PyCQA/docformatter/pull/201) ([weibullguy](https://github.com/weibullguy))
 
-Fixed
+### Fixed
 
 - fix: improper wrapping of short anonymous hyperlnks [\#213](https://github.com/PyCQA/docformatter/pull/213) ([weibullguy](https://github.com/weibullguy))
 
-Changed
+### Changed
 
 - chore: update version strings [\#214](https://github.com/PyCQA/docformatter/pull/214) ([weibullguy](https://github.com/weibullguy))
 - chore: update pre-commit-config [\#209](https://github.com/PyCQA/docformatter/pull/209) ([weibullguy](https://github.com/weibullguy))
 
 ## [1.7.0] - 2023-05-15
 
-
-Added
+### Added
 
 - feat: add option to format compatible with black [\#196](https://github.com/PyCQA/docformatter/pull/196) ([weibullguy](https://github.com/weibullguy))
 - feat: add option for user to provide list of words not to capitalize [\#195](https://github.com/PyCQA/docformatter/pull/195) ([weibullguy](https://github.com/weibullguy))
 
-Changed
+### Changed
 
 - chore: update workflows [\#206](https://github.com/PyCQA/docformatter/pull/206) ([weibullguy](https://github.com/weibullguy))
 
 ## [1.6.5] - 2023-05-03
 
-
-Fixed
+### Fixed
 
 - fix: removing blank line after import section [\#204](https://github.com/PyCQA/docformatter/pull/204) ([weibullguy](https://github.com/weibullguy))
 
-Changed
+### Changed
 
 - chore: add GH release badge [\#200](https://github.com/PyCQA/docformatter/pull/200) ([weibullguy](https://github.com/weibullguy))
 - chore: update workflows to create release [\#198](https://github.com/PyCQA/docformatter/pull/198) ([weibullguy](https://github.com/weibullguy))
@@ -127,28 +117,19 @@ Changed
 
 ## [1.6.4] - 2023-04-26
 
-
 ## [1.6.3] - 2023-04-23
-
 
 ## [1.6.2] - 2023-04-22
 
-
 ## [1.6.1] - 2023-04-21
-
 
 ## [1.6.0] - 2023-04-04
 
-
 ## [1.5.1] - 2022-12-16
-
 
 ## [1.5.0] - 2022-08-19
 
-
 ## [1.4] - 2020-12-27
-
-
 
 [Unreleased]: https://github.com/arquitt/docformatter/compare/v1.8.0...HEAD
 [1.8.0]: https://github.com/arquitt/docformatter/compare/v1.7.7...v1.8.0
